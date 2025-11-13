@@ -22,7 +22,7 @@ export default function ViewerScreen() {
         }} 
       />
       <View style={styles.viewerContainer}>
-        <ThreeViewer itemColor={item.cor} itemName={item.nome} />
+        <ThreeViewer itemColor={item.cor} modelPath={item.modelo} />
       </View>
 
       <View style={styles.infoContainer}>
