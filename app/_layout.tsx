@@ -1,3 +1,6 @@
+// IMPORTANTE: Carregar polyfills ANTES de qualquer outra coisa
+import '../utils/blob-polyfill';
+
 import { Stack } from 'expo-router';
 
 export default function RootLayout() {
@@ -32,9 +35,9 @@ export default function RootLayout() {
         name="category" 
         options={{ title: 'Categoria' }} 
       />
-      <Stack.Screen 
-        name="viewer" 
-        options={{ title: 'Visualização 3D' }} 
+      <Stack.Screen
+        name="viewer"
+        options={{ title: 'Realidade Aumentada' }}
       />
     </Stack>
   );

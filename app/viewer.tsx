@@ -1,4 +1,4 @@
-import ThreeViewer from '@/components/three-viewer';
+import ARViewer from '@/components/ar-viewer';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,15 +14,15 @@ export default function ViewerScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen 
+      <Stack.Screen
         options={{
-          title: 'Visualização 3D',
+          title: 'Realidade Aumentada',
           headerStyle: { backgroundColor: '#4CAF50' },
           headerTintColor: '#fff',
-        }} 
+        }}
       />
       <View style={styles.viewerContainer}>
-        <ThreeViewer itemColor={item.cor} modelPath={item.modelo} />
+        <ARViewer itemColor={item.cor} modelPath={item.modelo} />
       </View>
 
       <View style={styles.infoContainer}>
@@ -34,9 +34,9 @@ export default function ViewerScreen() {
           <Text style={styles.itemDescription}>{item.descricao}</Text>
 
           <View style={styles.instructionsBox}>
-            <Text style={styles.instructionsTitle}>💡 Dica</Text>
+            <Text style={styles.instructionsTitle}>📱 Realidade Aumentada</Text>
             <Text style={styles.instructionsText}>
-              O objeto está rotacionando automaticamente. Em versões futuras você poderá interagir com gestos!
+              Aponte a câmera para o ambiente ao seu redor e veja o objeto 3D se misturando com a realidade!
             </Text>
           </View>
         </ScrollView>
