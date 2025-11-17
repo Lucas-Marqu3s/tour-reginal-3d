@@ -1,8 +1,23 @@
 import { GLView } from 'expo-gl';
-import { Renderer } from 'expo-three';
+import { Renderer, loadAsync } from 'expo-three';
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import * as THREE from 'three';
+
+// Mapa de modelos disponíveis - todos os requires devem ser estáticos
+const MODEL_MAP: Record<string, any> = {
+  'arara.glb': require('../assets/images/models/arara.glb'),
+  // 'base_basic_pbr.glb': require('../assets/images/models/base_basic_pbr.glb'),
+  'siri.glb': require('../assets/images/models/blue_crab.glb'),
+  // 'mandacaru.glb': require('../assets/images/models/base_basic_pbr.glb'),
+  'coqueiro.glb': require('../assets/images/models/coqueiro.glb'),
+  // 'fogueira.glb': require('../assets/images/models/base_basic_pbr.glb'),
+  // 'acaraje.glb': require('../assets/images/models/base_basic_pbr.glb'),
+  // 'mico.glb': require('../assets/images/models/base_basic_pbr.glb'),
+  // 'pau-brasil.glb': require('../assets/images/models/base_basic_pbr.glb'),
+  // 'mascara.glb': require('../assets/images/models/base_basic_pbr.glb'),
+  // 'feijoada.glb': require('../assets/images/models/base_basic_pbr.glb'),
+};
 
 interface ThreeViewerProps {
   itemColor?: string;
@@ -50,128 +65,97 @@ const ThreeViewer: React.FC<ThreeViewerProps> = ({
 
     let model: THREE.Object3D;
 
-    // Criar geometrias procedurais elaboradas para cada tipo de modelo
-    if (modelPath) {
+    // Carregar modelo GLB se fornecido e existir no mapa
+    if (modelPath && MODEL_MAP[modelPath]) {
       try {
-        console.log('Criando modelo procedural para:', modelPath);
+        // Usar loadAsync do expo-three que é otimizado para React Native
+        const loadedModel = await loadAsync(MODEL_MAP[modelPath]);
 
-        // Criar representação procedural elaborada baseada no tipo de modelo
-        const modelGroup = new THREE.Group();
+        // loadAsync pode retornar o modelo diretamente ou ter uma propriedade scene
+        model = loadedModel.scene || loadedModel;
 
-        switch (modelPath) {
-          case 'arara.glb':
-          case 'mico.glb':
-            // Criar modelo de pássaro/animal
-            // Corpo
-            const bodyGeo = new THREE.SphereGeometry(0.5, 32, 32);
-            bodyGeo.scale(1, 1.2, 0.8);
-            const bodyMat = new THREE.MeshPhongMaterial({ color: itemColor, shininess: 100 });
-            const body = new THREE.Mesh(bodyGeo, bodyMat);
-            body.position.y = 0.3;
-            modelGroup.add(body);
-
-            // Cabeça
-            const headGeo = new THREE.SphereGeometry(0.25, 32, 32);
-            const head = new THREE.Mesh(headGeo, bodyMat);
-            head.position.y = 0.9;
-            modelGroup.add(head);
-
-            // Bico/focinho
-            const beakGeo = new THREE.ConeGeometry(0.08, 0.2, 8);
-            beakGeo.rotateX(Math.PI / 2);
-            const beakMat = new THREE.MeshPhongMaterial({ color: 0xffaa00, shininess: 100 });
-            const beak = new THREE.Mesh(beakGeo, beakMat);
-            beak.position.set(0, 0.9, 0.25);
-            modelGroup.add(beak);
-
-            // Asas/membros
-            const wingGeo = new THREE.SphereGeometry(0.4, 16, 16);
-            wingGeo.scale(0.3, 0.8, 1.5);
-
-            const leftWing = new THREE.Mesh(wingGeo, bodyMat);
-            leftWing.position.set(-0.5, 0.3, 0);
-            leftWing.rotation.z = Math.PI / 6;
-            modelGroup.add(leftWing);
-
-            const rightWing = new THREE.Mesh(wingGeo, bodyMat);
-            rightWing.position.set(0.5, 0.3, 0);
-            rightWing.rotation.z = -Math.PI / 6;
-            modelGroup.add(rightWing);
-
-            // Cauda
-            const tailGeo = new THREE.ConeGeometry(0.3, 0.6, 8);
-            tailGeo.rotateX(Math.PI / 2);
-            tailGeo.scale(1, 1, 0.3);
-            const tail = new THREE.Mesh(tailGeo, bodyMat);
-            tail.position.set(0, 0.3, -0.6);
-            modelGroup.add(tail);
-            break;
-
-          default:
-            // Modelo simples padrão
-            const defaultGeo = new THREE.SphereGeometry(1, 32, 32);
-            const defaultMat = new THREE.MeshPhongMaterial({ color: itemColor, shininess: 100 });
-            const defaultMesh = new THREE.Mesh(defaultGeo, defaultMat);
-            modelGroup.add(defaultMesh);
+        // Garantir que temos um objeto válido
+        if (!model || typeof model.traverse !== 'function') {
+          throw new Error('Modelo carregado não é um objeto THREE válido');
         }
 
-        model = modelGroup;
-        scene.add(model);
-        console.log('Modelo procedural criado e adicionado à cena');
+        // Calcular o tamanho do modelo manualmente
+        let minX = Infinity, minY = Infinity, minZ = Infinity;
+        let maxX = -Infinity, maxY = -Infinity, maxZ = -Infinity;
 
+        model.traverse((child: any) => {
+          if (child.isMesh && child.geometry) {
+            child.geometry.computeBoundingBox();
+            const bbox = child.geometry.boundingBox;
+            if (bbox) {
+              // Aplicar transformações do objeto
+              const worldPosition = new THREE.Vector3();
+              child.getWorldPosition(worldPosition);
+
+              minX = Math.min(minX, bbox.min.x + worldPosition.x);
+              minY = Math.min(minY, bbox.min.y + worldPosition.y);
+              minZ = Math.min(minZ, bbox.min.z + worldPosition.z);
+              maxX = Math.max(maxX, bbox.max.x + worldPosition.x);
+              maxY = Math.max(maxY, bbox.max.y + worldPosition.y);
+              maxZ = Math.max(maxZ, bbox.max.z + worldPosition.z);
+            }
+          }
+        });
+
+        // Calcular centro e escala
+        const centerX = (minX + maxX) / 2;
+        const centerY = (minY + maxY) / 2;
+        const centerZ = (minZ + maxZ) / 2;
+
+        const sizeX = maxX - minX;
+        const sizeY = maxY - minY;
+        const sizeZ = maxZ - minZ;
+
+        const maxDim = Math.max(sizeX, sizeY, sizeZ);
+        const scale = maxDim > 0 ? 2 / maxDim : 1;
+
+        model.scale.set(scale, scale, scale);
+        model.position.set(-centerX * scale, -centerY * scale, -centerZ * scale);
+
+        scene.add(model);
       } catch (error) {
         console.error('Erro ao carregar modelo GLB:', error);
-        console.error('Detalhes:', error instanceof Error ? error.message : String(error));
-
-        // Fallback para geometria simples
-        console.log('Usando geometria de fallback');
-        const geometry = new THREE.SphereGeometry(1, 32, 32);
+        // Fallback para cubo se o modelo não carregar
+        const geometry = new THREE.BoxGeometry(2, 2, 2);
         const material = new THREE.MeshPhongMaterial({
           color: itemColor,
-          shininess: 100,
+          shininess: 100
         });
         model = new THREE.Mesh(geometry, material);
         scene.add(model);
       }
     } else {
-      console.log('Nenhum modelo especificado, usando geometria padrão');
-      const geometry = new THREE.SphereGeometry(1, 32, 32);
+      // Criar cubo padrão se nenhum modelo foi fornecido ou não existe no mapa
+      const geometry = new THREE.BoxGeometry(2, 2, 2);
       const material = new THREE.MeshPhongMaterial({
         color: itemColor,
-        shininess: 100,
+        shininess: 100
       });
       model = new THREE.Mesh(geometry, material);
       scene.add(model);
     }
 
-    // Adicionar plataforma apenas se não estiver em modo AR
-    if (!transparent) {
-      const platformGeometry = new THREE.CylinderGeometry(3, 3, 0.2, 32);
-      const platformMaterial = new THREE.MeshPhongMaterial({
-        color: 0x888888,
-        shininess: 50
-      });
-      const platform = new THREE.Mesh(platformGeometry, platformMaterial);
-      platform.position.y = -2;
-      scene.add(platform);
-    }
+    const platformGeometry = new THREE.CylinderGeometry(3, 3, 0.2, 32);
+    const platformMaterial = new THREE.MeshPhongMaterial({
+      color: 0x888888,
+      shininess: 50
+    });
+    const platform = new THREE.Mesh(platformGeometry, platformMaterial);
+    platform.position.y = -2;
+    scene.add(platform);
 
     setLoading(false);
 
-    let time = 0;
     const animate = () => {
       requestIdRef.current = requestAnimationFrame(animate);
-      time += 0.01;
 
       if (model) {
-        // Rotação principal
         model.rotation.y += 0.01;
-
-        // Adicionar movimento de flutuação suave
-        model.position.y = Math.sin(time) * 0.2;
-
-        // Leve inclinação para dar dinamismo
-        model.rotation.x = Math.sin(time * 0.5) * 0.1;
       }
 
       renderer.render(scene, camera);

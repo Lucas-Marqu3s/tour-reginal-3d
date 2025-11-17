@@ -1,5 +1,5 @@
 // IMPORTANTE: Carregar polyfills ANTES de qualquer outra coisa
-import '../utils/blob-polyfill';
+// import '../utils/blob-polyfill';
 
 import { Stack } from 'expo-router';
 
