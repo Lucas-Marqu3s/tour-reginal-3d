@@ -1,12 +1,16 @@
 import { Link } from 'expo-router';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Tour Regional 3D</Text>
+        <Image
+          source={require('@/assets/images/logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
         <Text style={styles.subtitle}>
           Explore a cultura brasileira através de QR Codes
         </Text>
@@ -17,7 +21,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </Link>
 
-        <Link href="/region/nordeste" asChild>
+        {/* <Link href="/region/nordeste" asChild>
           <TouchableOpacity style={styles.demoButton}>
             <Text style={styles.demoButtonText}>🎭 Ver Demo (Nordeste)</Text>
           </TouchableOpacity>
@@ -27,7 +31,7 @@ export default function HomeScreen() {
           <TouchableOpacity style={styles.demoButton}>
             <Text style={styles.demoButtonText}>🏖️ Ver Demo (Sudeste)</Text>
           </TouchableOpacity>
-        </Link>
+        </Link> */}
       </View>
     </SafeAreaView>
   );
@@ -43,6 +47,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+  },
+  logo: {
+    width: 250,
+    height: 250,
+    marginBottom: 20,
   },
   title: {
     fontSize: 32,

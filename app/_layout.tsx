@@ -19,7 +19,7 @@ export default function RootLayout() {
       <Stack.Screen 
         name="index" 
         options={{ 
-          title: 'Tour Regional 3D',
+          title: 'BRASIL TOUR',
           headerShown: false 
         }} 
       />
