@@ -7,17 +7,7 @@ import * as THREE from 'three';
 
 // Mapa de modelos disponíveis - todos os requires devem ser estáticos
 const MODEL_MAP: Record<string, any> = {
-  // 'arara.glb': require('../assets/images/models/arara.glb'),
-  // 'base_basic_pbr.glb': require('../assets/images/models/base_basic_pbr.glb'),
   'siri.glb': require('../assets/images/models/blue_crab.glb'),
-  // 'mandacaru.glb': require('../assets/images/models/mandacaru.glb'),
-  // 'coqueiro.glb': require('../assets/images/models/coqueiro.glb'), // Desabilitado - usando imagem
-  // 'fogueira.glb': require('../assets/images/models/base_basic_pbr.glb'),
-  // 'acaraje.glb': require('../assets/images/models/base_basic_pbr.glb'),
-  // 'mico.glb': require('../assets/images/models/base_basic_pbr.glb'),
-  // 'pau-brasil.glb': require('../assets/images/models/base_basic_pbr.glb'),
-  // 'mascara.glb': require('../assets/images/models/base_basic_pbr.glb'),
-  // 'feijoada.glb': require('../assets/images/models/base_basic_pbr.glb'),
 };
 
 // Mapa de imagens 2D para itens que não usarão modelo 3D
@@ -27,6 +17,10 @@ const IMAGE_MAP: Record<string, any> = {
   'mandacaru.glb': require('../assets/images/models/mandacaru.png'),
   'fogueira.glb': require('../assets/images/models/fogueira.png'),
    'acaraje.glb': require('../assets/images/models/acaraje.png'),
+   'mico.glb': require('../assets/images/models/mico.png'),
+   'pau-brasil.glb': require('../assets/images/models/pau-brasil.png'),
+   'mascara.glb': require('../assets/images/models/mascara.png'),
+   'feijoada.glb': require('../assets/images/models/feijoada.png'),
 };
 
 interface ThreeViewerProps {
