@@ -11,8 +11,10 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSCameraUsageDescription": "Este app precisa de acesso à câmera para usar realidade aumentada."
-      }
+        "NSCameraUsageDescription": "Este app precisa de acesso à câmera para usar realidade aumentada.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.lucasmarqu3s.tourregional3d"
     },
     "android": {
       "adaptiveIcon": {
