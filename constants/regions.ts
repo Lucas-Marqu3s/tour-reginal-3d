@@ -210,13 +210,6 @@ export const regionsData: RegionsData = {
         cor: '#DAA520'
       },
       {
-        id: 'tuiuiu',
-        nome: 'Tuiuiú',
-        descricao: 'Ave símbolo do Pantanal',
-        modelo: 'tuiuiu.glb',
-        cor: '#000000'
-      },
-      {
         id: 'capivara',
         nome: 'Capivara',
         descricao: 'Maior roedor do mundo, comum no Pantanal',
@@ -238,23 +231,9 @@ export const regionsData: RegionsData = {
         descricao: 'Árvore típica do Cerrado que produz pequi',
         modelo: 'pequi.glb',
         cor: '#FFA500'
-      },
-      {
-        id: 'buriti',
-        nome: 'Buritizeiro',
-        descricao: 'Palmeira do Cerrado com frutos ricos em vitamina A',
-        modelo: 'buriti.glb',
-        cor: '#FF8C00'
       }
     ],
     festas: [
-      {
-        id: 'festa-divino',
-        nome: 'Festa do Divino',
-        descricao: 'Tradicional festa religiosa em Goiás',
-        modelo: 'divino.glb',
-        cor: '#DC143C'
-      },
       {
         id: 'rodeio',
         nome: 'Rodeio',
@@ -277,13 +256,6 @@ export const regionsData: RegionsData = {
         descricao: 'Iguaria de milho verde típica do Centro-Oeste',
         modelo: 'pamonha.glb',
         cor: '#F0E68C'
-      },
-      {
-        id: 'maria-izabel',
-        nome: 'Maria Isabel',
-        descricao: 'Prato tradicional com arroz e carne seca',
-        modelo: 'maria-izabel.glb',
-        cor: '#D2691E'
       }
     ]
   },

@@ -21,6 +21,13 @@ const IMAGE_MAP: Record<string, any> = {
    'pau-brasil.glb': require('../assets/images/models/pau-brasil.png'),
    'mascara.glb': require('../assets/images/models/mascara.png'),
    'feijoada.glb': require('../assets/images/models/feijoada.png'),
+   'onca.glb': require('../assets/images/models/onca.png'),
+   'capivara.glb': require('../assets/images/models/capivara.png'),
+   'rodeio.glb': require('../assets/images/models/rodeio.png'),
+   'ipe.glb': require('../assets/images/models/ipe.png'),
+   'pamonha.glb': require('../assets/images/models/pamonha.png'),
+   'arroz-pequi.glb': require('../assets/images/models/arroz-pequi.png'),
+   'pequi.glb': require('../assets/images/models/pequi.png'),
 };
 
 interface ThreeViewerProps {
