@@ -28,6 +28,12 @@ const IMAGE_MAP: Record<string, any> = {
    'pamonha.glb': require('../assets/images/models/pamonha.png'),
    'arroz-pequi.glb': require('../assets/images/models/arroz-pequi.png'),
    'pequi.glb': require('../assets/images/models/pequi.png'),
+   'vitoria-regia.glb': require('../assets/images/models/vitoria-regia.png'),
+   'tacaca.glb': require('../assets/images/models/tacaca.png'),
+   'boto.glb': require('../assets/images/models/boto.png'),
+   'boi-bumba.glb': require('../assets/images/models/boi-bumba.png'),
+   'acai.glb': require('../assets/images/models/acai.png'),
+   'preguica.glb': require('../assets/images/models/preguica.png')
 };
 
 interface ThreeViewerProps {

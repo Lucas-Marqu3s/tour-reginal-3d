@@ -30,13 +30,6 @@ export const regionsData: RegionsData = {
         cor: '#FFB6C1'
       },
       {
-        id: 'arara-vermelha',
-        nome: 'Arara Vermelha',
-        descricao: 'Ave colorida típica da floresta amazônica',
-        modelo: 'arara.glb',
-        cor: '#DC143C'
-      },
-      {
         id: 'preguica',
         nome: 'Preguiça',
         descricao: 'Mamífero lento que vive nas árvores da Amazônia',
@@ -51,20 +44,6 @@ export const regionsData: RegionsData = {
         descricao: 'Planta aquática gigante símbolo da Amazônia',
         modelo: 'vitoria-regia.glb',
         cor: '#228B22'
-      },
-      {
-        id: 'seringueira',
-        nome: 'Seringueira',
-        descricao: 'Árvore que produz látex para borracha',
-        modelo: 'seringueira.glb',
-        cor: '#556B2F'
-      },
-      {
-        id: 'castanheira',
-        nome: 'Castanheira',
-        descricao: 'Árvore gigante que produz castanha-do-pará',
-        modelo: 'castanheira.glb',
-        cor: '#8B4513'
       }
     ],
     festas: [
@@ -74,13 +53,6 @@ export const regionsData: RegionsData = {
         descricao: 'Maior festa folclórica do Norte',
         modelo: 'boi-bumba.glb',
         cor: '#FF0000'
-      },
-      {
-        id: 'cirio-nazare',
-        nome: 'Círio de Nazaré',
-        descricao: 'Maior procissão religiosa do Brasil',
-        modelo: 'cirio.glb',
-        cor: '#4169E1'
       }
     ],
     comidas: [
@@ -90,13 +62,6 @@ export const regionsData: RegionsData = {
         descricao: 'Sopa quente feita com tucupi e jambu',
         modelo: 'tacaca.glb',
         cor: '#FFA500'
-      },
-      {
-        id: 'pirarucu',
-        nome: 'Pirarucu',
-        descricao: 'Peixe gigante de água doce da Amazônia',
-        modelo: 'pirarucu.glb',
-        cor: '#CD853F'
       },
       {
         id: 'acai',
