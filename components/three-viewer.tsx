@@ -33,7 +33,13 @@ const IMAGE_MAP: Record<string, any> = {
    'boto.glb': require('../assets/images/models/boto.png'),
    'boi-bumba.glb': require('../assets/images/models/boi-bumba.png'),
    'acai.glb': require('../assets/images/models/acai.png'),
-   'preguica.glb': require('../assets/images/models/preguica.png')
+   'preguica.glb': require('../assets/images/models/preguica.png'),
+   'pinhao.glb': require('../assets/images/models/pinhao.png'),
+   'pinguim.glb': require('../assets/images/models/pinguim.png'),
+   'gralha.glb': require('../assets/images/models/gralha.png'),
+   'churrasco.glb': require('../assets/images/models/churrasco.png'),
+   'chopp.glb': require('../assets/images/models/chopp.png'),
+   'araucaria.glb': require('../assets/images/models/araucaria.png')
 };
 
 interface ThreeViewerProps {

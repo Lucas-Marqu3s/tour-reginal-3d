@@ -240,13 +240,6 @@ export const regionsData: RegionsData = {
         descricao: 'Ave símbolo do Paraná',
         modelo: 'gralha.glb',
         cor: '#4169E1'
-      },
-      {
-        id: 'papagaio-charrao',
-        nome: 'Papagaio-Charão',
-        descricao: 'Papagaio típico do Sul do Brasil',
-        modelo: 'papagaio.glb',
-        cor: '#228B22'
       }
     ],
     flora: [
@@ -256,20 +249,6 @@ export const regionsData: RegionsData = {
         descricao: 'Pinheiro-do-paraná, árvore símbolo do Sul',
         modelo: 'araucaria.glb',
         cor: '#2F4F4F'
-      },
-      {
-        id: 'erva-mate',
-        nome: 'Erva-Mate',
-        descricao: 'Planta usada para fazer chimarrão',
-        modelo: 'erva-mate.glb',
-        cor: '#556B2F'
-      },
-      {
-        id: 'bracatinga',
-        nome: 'Bracatinga',
-        descricao: 'Árvore típica da Floresta com Araucárias',
-        modelo: 'bracatinga.glb',
-        cor: '#654321'
       }
     ],
     festas: [
@@ -279,20 +258,6 @@ export const regionsData: RegionsData = {
         descricao: 'Maior festa alemã da América Latina',
         modelo: 'chopp.glb',
         cor: '#FFD700'
-      },
-      {
-        id: 'festa-uva',
-        nome: 'Festa da Uva',
-        descricao: 'Tradicional festa italiana em Caxias do Sul',
-        modelo: 'uva.glb',
-        cor: '#800080'
-      },
-      {
-        id: 'fandango',
-        nome: 'Fandango',
-        descricao: 'Dança tradicional do litoral sul',
-        modelo: 'fandango.glb',
-        cor: '#FF6347'
       }
     ],
     comidas: [
@@ -302,13 +267,6 @@ export const regionsData: RegionsData = {
         descricao: 'Tradicional carne assada do Rio Grande do Sul',
         modelo: 'churrasco.glb',
         cor: '#8B4513'
-      },
-      {
-        id: 'barreado',
-        nome: 'Barreado',
-        descricao: 'Prato típico do litoral paranaense',
-        modelo: 'barreado.glb',
-        cor: '#654321'
       },
       {
         id: 'pinhao',
