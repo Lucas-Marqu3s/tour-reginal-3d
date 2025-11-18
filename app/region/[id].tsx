@@ -1,7 +1,15 @@
 import { categories, regionsData } from '@/constants/regions';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+const regionMaps: { [key: string]: any } = {
+  'norte': require('@/assets/images/norte_mapa.png'),
+  'nordeste': require('@/assets/images/nordeste_mapa.png'),
+  'sudeste': require('@/assets/images/sudeste_mapa.png'),
+  'centro-oeste': require('@/assets/images/centro_oeste_mapa.png'),
+  'sul': require('@/assets/images/sul_mapa.png')
+};
 
 export default function RegionScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -38,6 +46,13 @@ export default function RegionScreen() {
       />
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
+          {regionMaps[id] && (
+            <Image
+              source={regionMaps[id]}
+              style={styles.mapImage}
+              resizeMode="contain"
+            />
+          )}
           <Text style={styles.title}>{region.nome}</Text>
           <Text style={styles.subtitle}>Selecione uma categoria para explorar</Text>
         </View>
@@ -77,6 +92,11 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: 30,
     alignItems: 'center',
+  },
+  mapImage: {
+    width: 200,
+    height: 150,
+    marginBottom: 15,
   },
   title: {
     fontSize: 32,
