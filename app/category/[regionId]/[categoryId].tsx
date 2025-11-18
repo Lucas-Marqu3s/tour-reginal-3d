@@ -50,7 +50,7 @@ export default function CategoryItemsScreen() {
               </View>
               <Text style={styles.itemDescription}>{item.descricao}</Text>
               <View style={styles.viewButton}>
-                <Text style={styles.viewButtonText}>Ver em 3D →</Text>
+                <Text style={styles.viewButtonText}>Ver →</Text>
               </View>
             </TouchableOpacity>
           ))}

@@ -1,22 +1,32 @@
+import { CameraView, useCameraPermissions } from 'expo-camera';
 import { GLView } from 'expo-gl';
 import { Renderer, loadAsync } from 'expo-three';
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, View } from 'react-native';
 import * as THREE from 'three';
 
 // Mapa de modelos disponíveis - todos os requires devem ser estáticos
 const MODEL_MAP: Record<string, any> = {
-  'arara.glb': require('../assets/images/models/arara.glb'),
+  // 'arara.glb': require('../assets/images/models/arara.glb'),
   // 'base_basic_pbr.glb': require('../assets/images/models/base_basic_pbr.glb'),
   'siri.glb': require('../assets/images/models/blue_crab.glb'),
-  // 'mandacaru.glb': require('../assets/images/models/base_basic_pbr.glb'),
-  'coqueiro.glb': require('../assets/images/models/coqueiro.glb'),
+  // 'mandacaru.glb': require('../assets/images/models/mandacaru.glb'),
+  // 'coqueiro.glb': require('../assets/images/models/coqueiro.glb'), // Desabilitado - usando imagem
   // 'fogueira.glb': require('../assets/images/models/base_basic_pbr.glb'),
   // 'acaraje.glb': require('../assets/images/models/base_basic_pbr.glb'),
   // 'mico.glb': require('../assets/images/models/base_basic_pbr.glb'),
   // 'pau-brasil.glb': require('../assets/images/models/base_basic_pbr.glb'),
   // 'mascara.glb': require('../assets/images/models/base_basic_pbr.glb'),
   // 'feijoada.glb': require('../assets/images/models/base_basic_pbr.glb'),
+};
+
+// Mapa de imagens 2D para itens que não usarão modelo 3D
+const IMAGE_MAP: Record<string, any> = {
+  'arara.glb': require('../assets/images/models/arara.png'),
+  'coqueiro.glb': require('../assets/images/models/coqueiro.png'),
+  'mandacaru.glb': require('../assets/images/models/mandacaru.png'),
+  'fogueira.glb': require('../assets/images/models/fogueira.png'),
+   'acaraje.glb': require('../assets/images/models/acaraje.png'),
 };
 
 interface ThreeViewerProps {
@@ -31,7 +41,21 @@ const ThreeViewer: React.FC<ThreeViewerProps> = ({
   transparent = false
 }) => {
   const [loading, setLoading] = useState(true);
+  const [useImage, setUseImage] = useState(false);
   const requestIdRef = useRef<number | null>(null);
+  const [permission, requestPermission] = useCameraPermissions();
+
+  // Verificar se deve usar imagem ao invés de modelo 3D
+  useEffect(() => {
+    if (modelPath && IMAGE_MAP[modelPath]) {
+      setUseImage(true);
+      setLoading(false);
+      // Solicitar permissão de câmera se necessário
+      if (!permission?.granted) {
+        requestPermission();
+      }
+    }
+  }, [modelPath, permission]);
 
   const onContextCreate = async (gl: any) => {
     const renderer = new Renderer({
@@ -140,14 +164,14 @@ const ThreeViewer: React.FC<ThreeViewerProps> = ({
       scene.add(model);
     }
 
-    const platformGeometry = new THREE.CylinderGeometry(3, 3, 0.2, 32);
-    const platformMaterial = new THREE.MeshPhongMaterial({
-      color: 0x888888,
-      shininess: 50
-    });
-    const platform = new THREE.Mesh(platformGeometry, platformMaterial);
-    platform.position.y = -2;
-    scene.add(platform);
+    // const platformGeometry = new THREE.CylinderGeometry(3, 3, 0.2, 32);
+    // const platformMaterial = new THREE.MeshPhongMaterial({
+    //   color: 0x888888,
+    //   shininess: 50
+    // });
+    // const platform = new THREE.Mesh(platformGeometry, platformMaterial);
+    // platform.position.y = -2;
+    // scene.add(platform);
 
     setLoading(false);
 
@@ -172,6 +196,30 @@ const ThreeViewer: React.FC<ThreeViewerProps> = ({
       }
     };
   }, []);
+
+  // Se deve usar imagem 2D ao invés de modelo 3D (com câmera de fundo)
+  if (useImage && modelPath && IMAGE_MAP[modelPath]) {
+    return (
+      <View style={styles.container}>
+        {/* Câmera como fundo */}
+        {permission?.granted && (
+          <CameraView
+            style={StyleSheet.absoluteFillObject}
+            facing="back"
+          />
+        )}
+
+        {/* Imagem sobreposta à câmera */}
+        <View style={styles.imageOverlay}>
+          <Image
+            source={IMAGE_MAP[modelPath]}
+            style={styles.staticImage}
+            resizeMode="contain"
+          />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -201,6 +249,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.8)',
     zIndex: 1,
+  },
+  imageOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  staticImage: {
+    width: '50%',
+    height: '50%',
   },
 });
 

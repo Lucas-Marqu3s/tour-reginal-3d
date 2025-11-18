@@ -19,6 +19,94 @@ export interface RegionsData {
 }
 
 export const regionsData: RegionsData = {
+  'norte': {
+    nome: 'Norte',
+    fauna: [
+      {
+        id: 'boto-cor-de-rosa',
+        nome: 'Boto-Cor-de-Rosa',
+        descricao: 'Golfinho de água doce símbolo da Amazônia',
+        modelo: 'boto.glb',
+        cor: '#FFB6C1'
+      },
+      {
+        id: 'arara-vermelha',
+        nome: 'Arara Vermelha',
+        descricao: 'Ave colorida típica da floresta amazônica',
+        modelo: 'arara.glb',
+        cor: '#DC143C'
+      },
+      {
+        id: 'preguica',
+        nome: 'Preguiça',
+        descricao: 'Mamífero lento que vive nas árvores da Amazônia',
+        modelo: 'preguica.glb',
+        cor: '#8B7355'
+      }
+    ],
+    flora: [
+      {
+        id: 'vitoria-regia',
+        nome: 'Vitória-Régia',
+        descricao: 'Planta aquática gigante símbolo da Amazônia',
+        modelo: 'vitoria-regia.glb',
+        cor: '#228B22'
+      },
+      {
+        id: 'seringueira',
+        nome: 'Seringueira',
+        descricao: 'Árvore que produz látex para borracha',
+        modelo: 'seringueira.glb',
+        cor: '#556B2F'
+      },
+      {
+        id: 'castanheira',
+        nome: 'Castanheira',
+        descricao: 'Árvore gigante que produz castanha-do-pará',
+        modelo: 'castanheira.glb',
+        cor: '#8B4513'
+      }
+    ],
+    festas: [
+      {
+        id: 'festival-parintins',
+        nome: 'Festival de Parintins',
+        descricao: 'Maior festa folclórica do Norte',
+        modelo: 'boi-bumba.glb',
+        cor: '#FF0000'
+      },
+      {
+        id: 'cirio-nazare',
+        nome: 'Círio de Nazaré',
+        descricao: 'Maior procissão religiosa do Brasil',
+        modelo: 'cirio.glb',
+        cor: '#4169E1'
+      }
+    ],
+    comidas: [
+      {
+        id: 'tacaca',
+        nome: 'Tacacá',
+        descricao: 'Sopa quente feita com tucupi e jambu',
+        modelo: 'tacaca.glb',
+        cor: '#FFA500'
+      },
+      {
+        id: 'pirarucu',
+        nome: 'Pirarucu',
+        descricao: 'Peixe gigante de água doce da Amazônia',
+        modelo: 'pirarucu.glb',
+        cor: '#CD853F'
+      },
+      {
+        id: 'acai',
+        nome: 'Açaí',
+        descricao: 'Fruto típico amazônico energético',
+        modelo: 'acai.glb',
+        cor: '#4B0082'
+      }
+    ]
+  },
   'nordeste': {
     nome: 'Nordeste',
     fauna: [
@@ -108,6 +196,189 @@ export const regionsData: RegionsData = {
         descricao: 'Prato típico brasileiro com feijão preto',
         modelo: 'feijoada.glb',
         cor: '#2F1B13'
+      }
+    ]
+  },
+  'centro-oeste': {
+    nome: 'Centro-Oeste',
+    fauna: [
+      {
+        id: 'onca-pintada',
+        nome: 'Onça-Pintada',
+        descricao: 'Maior felino das Américas, símbolo do Pantanal',
+        modelo: 'onca.glb',
+        cor: '#DAA520'
+      },
+      {
+        id: 'tuiuiu',
+        nome: 'Tuiuiú',
+        descricao: 'Ave símbolo do Pantanal',
+        modelo: 'tuiuiu.glb',
+        cor: '#000000'
+      },
+      {
+        id: 'capivara',
+        nome: 'Capivara',
+        descricao: 'Maior roedor do mundo, comum no Pantanal',
+        modelo: 'capivara.glb',
+        cor: '#8B6914'
+      }
+    ],
+    flora: [
+      {
+        id: 'ipê-amarelo',
+        nome: 'Ipê-Amarelo',
+        descricao: 'Árvore símbolo do Cerrado com flores amarelas',
+        modelo: 'ipe.glb',
+        cor: '#FFD700'
+      },
+      {
+        id: 'pequi',
+        nome: 'Pequizeiro',
+        descricao: 'Árvore típica do Cerrado que produz pequi',
+        modelo: 'pequi.glb',
+        cor: '#FFA500'
+      },
+      {
+        id: 'buriti',
+        nome: 'Buritizeiro',
+        descricao: 'Palmeira do Cerrado com frutos ricos em vitamina A',
+        modelo: 'buriti.glb',
+        cor: '#FF8C00'
+      }
+    ],
+    festas: [
+      {
+        id: 'festa-divino',
+        nome: 'Festa do Divino',
+        descricao: 'Tradicional festa religiosa em Goiás',
+        modelo: 'divino.glb',
+        cor: '#DC143C'
+      },
+      {
+        id: 'rodeio',
+        nome: 'Rodeio',
+        descricao: 'Festa tradicional da cultura sertaneja',
+        modelo: 'rodeio.glb',
+        cor: '#8B4513'
+      }
+    ],
+    comidas: [
+      {
+        id: 'arroz-pequi',
+        nome: 'Arroz com Pequi',
+        descricao: 'Prato típico goiano com fruto do Cerrado',
+        modelo: 'arroz-pequi.glb',
+        cor: '#FFD700'
+      },
+      {
+        id: 'pamonha',
+        nome: 'Pamonha',
+        descricao: 'Iguaria de milho verde típica do Centro-Oeste',
+        modelo: 'pamonha.glb',
+        cor: '#F0E68C'
+      },
+      {
+        id: 'maria-izabel',
+        nome: 'Maria Isabel',
+        descricao: 'Prato tradicional com arroz e carne seca',
+        modelo: 'maria-izabel.glb',
+        cor: '#D2691E'
+      }
+    ]
+  },
+  'sul': {
+    nome: 'Sul',
+    fauna: [
+      {
+        id: 'pinguim-magalhanico',
+        nome: 'Pinguim-de-Magalhães',
+        descricao: 'Pinguim que visita o litoral sul do Brasil',
+        modelo: 'pinguim.glb',
+        cor: '#000000'
+      },
+      {
+        id: 'gralha-azul',
+        nome: 'Gralha-Azul',
+        descricao: 'Ave símbolo do Paraná',
+        modelo: 'gralha.glb',
+        cor: '#4169E1'
+      },
+      {
+        id: 'papagaio-charrao',
+        nome: 'Papagaio-Charão',
+        descricao: 'Papagaio típico do Sul do Brasil',
+        modelo: 'papagaio.glb',
+        cor: '#228B22'
+      }
+    ],
+    flora: [
+      {
+        id: 'araucaria',
+        nome: 'Araucária',
+        descricao: 'Pinheiro-do-paraná, árvore símbolo do Sul',
+        modelo: 'araucaria.glb',
+        cor: '#2F4F4F'
+      },
+      {
+        id: 'erva-mate',
+        nome: 'Erva-Mate',
+        descricao: 'Planta usada para fazer chimarrão',
+        modelo: 'erva-mate.glb',
+        cor: '#556B2F'
+      },
+      {
+        id: 'bracatinga',
+        nome: 'Bracatinga',
+        descricao: 'Árvore típica da Floresta com Araucárias',
+        modelo: 'bracatinga.glb',
+        cor: '#654321'
+      }
+    ],
+    festas: [
+      {
+        id: 'oktoberfest',
+        nome: 'Oktoberfest',
+        descricao: 'Maior festa alemã da América Latina',
+        modelo: 'chopp.glb',
+        cor: '#FFD700'
+      },
+      {
+        id: 'festa-uva',
+        nome: 'Festa da Uva',
+        descricao: 'Tradicional festa italiana em Caxias do Sul',
+        modelo: 'uva.glb',
+        cor: '#800080'
+      },
+      {
+        id: 'fandango',
+        nome: 'Fandango',
+        descricao: 'Dança tradicional do litoral sul',
+        modelo: 'fandango.glb',
+        cor: '#FF6347'
+      }
+    ],
+    comidas: [
+      {
+        id: 'churrasco',
+        nome: 'Churrasco Gaúcho',
+        descricao: 'Tradicional carne assada do Rio Grande do Sul',
+        modelo: 'churrasco.glb',
+        cor: '#8B4513'
+      },
+      {
+        id: 'barreado',
+        nome: 'Barreado',
+        descricao: 'Prato típico do litoral paranaense',
+        modelo: 'barreado.glb',
+        cor: '#654321'
+      },
+      {
+        id: 'pinhao',
+        nome: 'Pinhão',
+        descricao: 'Semente da araucária, típica do Sul',
+        modelo: 'pinhao.glb',
+        cor: '#8B7355'
       }
     ]
   }
